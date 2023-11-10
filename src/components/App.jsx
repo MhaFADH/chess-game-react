@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+import Board from "./Board"
+
 const App = () => (
-  <div className="bg-green-400 grid grid-cols-2">
-    <button>zdsqsq</button>
-    <button>zdsqsq</button>
-    <button>zdsqsq</button>
-    <button>zdsqsq</button>
-    <button>zdsqsq</button>
+  <div>
+    <Board></Board>
   </div>
 )
 
