@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react"
 import Cell from "./Cell"
 import { whitePieces, blackPieces } from "../pieces-related/pieces"
@@ -9,6 +10,7 @@ const Board = (props) => (
         if (whitePieces[col]) {
           return (
             <Cell
+              piece={col}
               row={rowIndex}
               col={colIndex}
               content={whitePieces[col].icon}
@@ -20,6 +22,7 @@ const Board = (props) => (
         if (blackPieces[col]) {
           return (
             <Cell
+              piece={col}
               row={rowIndex}
               col={colIndex}
               content={blackPieces[col].icon}
@@ -30,6 +33,7 @@ const Board = (props) => (
 
         return (
           <Cell
+            piece={col}
             row={rowIndex}
             col={colIndex}
             content={null}

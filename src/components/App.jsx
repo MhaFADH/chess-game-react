@@ -1,38 +1,12 @@
 /* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-import { useState } from "react"
+import { useContext } from "react"
+import AppContext from "./AppContext"
 import Board from "./Board"
 
 const App = () => {
-  const initBoard = [
-    [
-      "brook",
-      "bknight",
-      "bbishop",
-      "bqueen",
-      "bking",
-      "bbishop",
-      "bknight",
-      "brook"
-    ],
-    ["bpawn", "bpawn", "bpawn", "bpawn", "bpawn", "bpawn", "bpawn", "bpawn"],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    ["wpawn", "wpawn", "wpawn", "wpawn", "wpawn", "wpawn", "wpawn", "wpawn"],
-    [
-      "wrook",
-      "wknight",
-      "wbishop",
-      "wqueen",
-      "wking",
-      "wbishop",
-      "wknight",
-      "wrook"
-    ]
-  ]
-  const [board, setBoard] = useState(initBoard)
+  const {
+    mainBoard: { board }
+  } = useContext(AppContext)
 
   return (
     <>
