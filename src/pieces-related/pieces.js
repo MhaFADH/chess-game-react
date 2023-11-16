@@ -1,4 +1,4 @@
-export const initBoard = [
+export const initBoard = () => [
   [
     "brook",
     "bknight",
@@ -44,7 +44,8 @@ export const whitePieces = {
   },
   wbishop: {
     icon: "./pieces-png/white-bishop.png"
-  }
+  },
+  state: false
 }
 
 export const blackPieces = {
@@ -65,5 +66,6 @@ export const blackPieces = {
   },
   bbishop: {
     icon: "./pieces-png/black-bishop.png"
-  }
+  },
+  state: false
 }
