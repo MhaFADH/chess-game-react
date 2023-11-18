@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import AppContext from "./AppContext"
 import Board from "./Board"
 
 const App = () => {
   const {
-    mainBoard,
+    board,
     score,
     started,
     actions: { reset, start },
-    score: { total }
+    total
   } = useContext(AppContext)
 
   return (
@@ -50,7 +51,7 @@ const App = () => {
         </div>
       </header>
       <div className="bg-slate-500 h-screen flex text-center align-center justify-center">
-        <Board board={mainBoard}></Board>
+        <Board board={board}></Board>
       </div>
     </>
   )

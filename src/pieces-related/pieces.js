@@ -26,6 +26,18 @@ export const initBoard = () => [
     "wrook"
   ]
 ]
+
+export const initScore = () => ({
+  white: {
+    eaten: 0,
+    count: 0
+  },
+  black: {
+    eaten: 0,
+    count: 0
+  }
+})
+
 export const whitePieces = {
   wpawn: {
     icon: "./pieces-png/white-pawn.png"
@@ -68,4 +80,17 @@ export const blackPieces = {
     icon: "./pieces-png/black-bishop.png"
   },
   state: false
+}
+export const nextTurn = () => {
+  if (blackPieces.state) {
+    blackPieces.state = false
+  } else {
+    blackPieces.state = true
+  }
+
+  if (whitePieces.state) {
+    whitePieces.state = false
+  } else {
+    whitePieces.state = true
+  }
 }

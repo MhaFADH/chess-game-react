@@ -1,24 +1,24 @@
+/* eslint-disable prefer-template */
 /* eslint-disable capitalized-comments */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-console */
-import React, { useCallback, useContext, useEffect } from "react"
+import React, { useCallback, useContext } from "react"
 import AppContext from "./AppContext"
-import { blackPieces, whitePieces } from "../pieces-related/pieces"
+import { blackPieces, whitePieces, nextTurn } from "../pieces-related/pieces"
 
 const Cell = (props) => {
   const {
-    mainBoard,
     stash,
     actions: { setBoard },
-    score
+    score,
+    setScore
   } = useContext(AppContext)
   const { content, row, col, piece } = props
   const style = (row + col) % 2 === 0 ? "bg-slate-400" : "bg-slate-200"
   let pieceState = false
   const handleDrop = useCallback(
     (event) => {
-      //const newBoard = [...mainBoard]
       const target = {
         x: event.target.getAttribute("col"),
         y: event.target.getAttribute("row"),
@@ -32,22 +32,25 @@ const Cell = (props) => {
         team: stash.current.team
       }
 
+      console.log(target, source)
+
       if (JSON.stringify(target) !== JSON.stringify(source)) {
+        console.log("hey")
         setBoard((previous) => {
           previous[target.y][target.x] = source.piece
           previous[source.y][source.x] = 0
 
-          return previous
+          return [...previous]
         })
 
         if (source.team === "b") {
-          score.black.setCount(score.black.count + 1)
-          blackPieces.state = false
-          whitePieces.state = true
+          score.black.count += 1
+          setScore({ ...score })
+          nextTurn()
         } else {
-          score.white.setCount(1)
-          blackPieces.state = true
-          whitePieces.state = false
+          score.white.count += 1
+          setScore({ ...score })
+          nextTurn()
         }
       }
     },
