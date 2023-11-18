@@ -6,6 +6,7 @@
 import React, { useCallback, useContext } from "react"
 import AppContext from "./AppContext"
 import { blackPieces, whitePieces, nextTurn } from "../pieces-related/pieces"
+import knight from "../pieces-related/behaviors/knight"
 
 const Cell = (props) => {
   const {
@@ -32,13 +33,15 @@ const Cell = (props) => {
         team: stash.current.team
       }
 
-      console.log(target, source)
+      //console.log(target, source)
 
       if (JSON.stringify(target) !== JSON.stringify(source)) {
         console.log("hey")
         setBoard((previous) => {
           previous[target.y][target.x] = source.piece
           previous[source.y][source.x] = 0
+
+          console.log(knight(source, target, previous))
 
           return [...previous]
         })
@@ -63,7 +66,7 @@ const Cell = (props) => {
       sPiece: event.target.getAttribute("piece"),
       team: event.target.getAttribute("piece").slice(0, 1)
     }
-    console.log(stash.current)
+    //console.log(stash.current)
   }, [])
 
   if (blackPieces[piece]) {

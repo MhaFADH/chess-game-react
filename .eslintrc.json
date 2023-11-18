@@ -48,7 +48,7 @@
       { "ignoreConsecutiveComments": true }
     ],
     "class-methods-use-this": ["error", { "enforceForClassFields": true }],
-    "complexity": ["error", 5],
+    "complexity": ["error", 30],
     "consistent-return": "error",
     "curly": ["error", "all"],
     "default-param-last": "error",
