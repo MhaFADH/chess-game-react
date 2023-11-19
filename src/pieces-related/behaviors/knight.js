@@ -1,66 +1,58 @@
-/* eslint-disable capitalized-comments */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-export default (source, target, board) => {
-  const sY = parseInt(source.y, 10)
-  const sX = parseInt(source.x, 10)
-  const tY = parseInt(target.y, 10)
-  const tX = parseInt(target.x, 10)
+export default (source, target) => {
+  //Global verifications
 
-  console.log(sY, sX, tY, tX)
-
-  if (JSON.stringify(source) === JSON.stringify(target)) {
+  if (source.team === target.team) {
     return false
   }
 
-  if (sY === tY || sX === tX) {
+  if (source.y === target.y || source.x === target.x) {
     return false
   }
 
   //Down
 
-  if (tY > sY) {
-    if (tY - 2 === sY && tX - 1 === sX) {
+  if (target.y > source.y) {
+    if (target.y - 2 === source.y && target.x - 1 === source.x) {
       return true
     }
 
-    if (tY - 2 === sY && tX + 1 === sX) {
+    if (target.y - 2 === source.y && target.x + 1 === source.x) {
       return true
     }
   }
 
   //Up
 
-  if (tY < sY) {
-    if (tY + 2 === sY && tX - 1 === sX) {
+  if (target.y < source.y) {
+    if (target.y + 2 === source.y && target.x - 1 === source.x) {
       return true
     }
 
-    if (tY + 2 === sY && tX + 1 === sX) {
+    if (target.y + 2 === source.y && target.x + 1 === source.x) {
       return true
     }
   }
 
   //Right
 
-  if (tX > sX) {
-    if (tY + 1 === sY && tX - 2 === sX) {
+  if (target.x > source.x) {
+    if (target.y + 1 === source.y && target.x - 2 === source.x) {
       return true
     }
 
-    if (tY - 1 === sY && tX - 2 === sX) {
+    if (target.y - 1 === source.y && target.x - 2 === source.x) {
       return true
     }
   }
 
   //Left
 
-  if (tX < sX) {
-    if (tY + 1 === sY && tX + 2 === sX) {
+  if (target.x < source.x) {
+    if (target.y + 1 === source.y && target.x + 2 === source.x) {
       return true
     }
 
-    if (tY - 1 === sY && tX + 2 === sX) {
+    if (target.y - 1 === source.y && target.x + 2 === source.x) {
       return true
     }
   }

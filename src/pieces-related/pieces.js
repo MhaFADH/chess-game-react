@@ -1,3 +1,6 @@
+import king from "./behaviors/king"
+import knight from "./behaviors/knight"
+
 export const initBoard = () => [
   [
     "brook",
@@ -43,7 +46,8 @@ export const whitePieces = {
     icon: "./pieces-png/white-pawn.png"
   },
   wknight: {
-    icon: "./pieces-png/white-knight.png"
+    icon: "./pieces-png/white-knight.png",
+    fn: knight
   },
   wrook: {
     icon: "./pieces-png/white-rook.png"
@@ -52,7 +56,8 @@ export const whitePieces = {
     icon: "./pieces-png/white-queen.png"
   },
   wking: {
-    icon: "./pieces-png/white-king.png"
+    icon: "./pieces-png/white-king.png",
+    fn: king
   },
   wbishop: {
     icon: "./pieces-png/white-bishop.png"
@@ -65,7 +70,8 @@ export const blackPieces = {
     icon: "./pieces-png/black-pawn.png"
   },
   bknight: {
-    icon: "./pieces-png/black-knight.png"
+    icon: "./pieces-png/black-knight.png",
+    fn: knight
   },
   brook: {
     icon: "./pieces-png/black-rook.png"
@@ -74,7 +80,8 @@ export const blackPieces = {
     icon: "./pieces-png/black-queen.png"
   },
   bking: {
-    icon: "./pieces-png/black-king.png"
+    icon: "./pieces-png/black-king.png",
+    fn: king
   },
   bbishop: {
     icon: "./pieces-png/black-bishop.png"

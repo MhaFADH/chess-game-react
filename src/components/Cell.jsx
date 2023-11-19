@@ -6,7 +6,7 @@
 import React, { useCallback, useContext } from "react"
 import AppContext from "./AppContext"
 import { blackPieces, whitePieces, nextTurn } from "../pieces-related/pieces"
-import knight from "../pieces-related/behaviors/knight"
+import king from "../pieces-related/behaviors/king"
 
 const Cell = (props) => {
   const {
@@ -21,14 +21,14 @@ const Cell = (props) => {
   const handleDrop = useCallback(
     (event) => {
       const target = {
-        x: event.target.getAttribute("col"),
-        y: event.target.getAttribute("row"),
+        x: parseInt(event.target.getAttribute("col"), 10),
+        y: parseInt(event.target.getAttribute("row"), 10),
         piece: event.target.getAttribute("piece"),
         team: event.target.getAttribute("piece").slice(0, 1)
       }
       const source = {
-        x: stash.current.sX,
-        y: stash.current.sY,
+        x: parseInt(stash.current.sX, 10),
+        y: parseInt(stash.current.sY, 10),
         piece: stash.current.sPiece,
         team: stash.current.team
       }
@@ -36,24 +36,29 @@ const Cell = (props) => {
       //console.log(target, source)
 
       if (JSON.stringify(target) !== JSON.stringify(source)) {
-        console.log("hey")
-        setBoard((previous) => {
-          previous[target.y][target.x] = source.piece
-          previous[source.y][source.x] = 0
+        if (
+          whitePieces[source.piece]?.fn(source, target) ||
+          blackPieces[source.piece]?.fn(source, target)
+        ) {
+          setBoard((previous) => {
+            previous[target.y][target.x] = source.piece
+            previous[source.y][source.x] = 0
 
-          console.log(knight(source, target, previous))
+            console.log(king(source, target))
+            console.log(source, target)
 
-          return [...previous]
-        })
+            return [...previous]
+          })
 
-        if (source.team === "b") {
-          score.black.count += 1
-          setScore({ ...score })
-          nextTurn()
-        } else {
-          score.white.count += 1
-          setScore({ ...score })
-          nextTurn()
+          if (source.team === "b") {
+            score.black.count += 1
+            setScore({ ...score })
+            nextTurn()
+          } else {
+            score.white.count += 1
+            setScore({ ...score })
+            nextTurn()
+          }
         }
       }
     },
