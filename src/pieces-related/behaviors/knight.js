@@ -1,59 +1,18 @@
+/* eslint-disable no-console */
 export default (source, target) => {
-  //Global verifications
-
-  if (source.team === target.team) {
-    return false
-  }
-
-  if (source.y === target.y || source.x === target.x) {
-    return false
-  }
-
-  //Down
-
-  if (target.y > source.y) {
-    if (target.y - 2 === source.y && target.x - 1 === source.x) {
-      return true
-    }
-
-    if (target.y - 2 === source.y && target.x + 1 === source.x) {
-      return true
+  for (let i = -2; i < 3; i += 4) {
+    for (let j = -1; j < 2; j += 2) {
+      if (target.y + i === source.y && target.x + j === source.x) {
+        return true
+      }
     }
   }
 
-  //Up
-
-  if (target.y < source.y) {
-    if (target.y + 2 === source.y && target.x - 1 === source.x) {
-      return true
-    }
-
-    if (target.y + 2 === source.y && target.x + 1 === source.x) {
-      return true
-    }
-  }
-
-  //Right
-
-  if (target.x > source.x) {
-    if (target.y + 1 === source.y && target.x - 2 === source.x) {
-      return true
-    }
-
-    if (target.y - 1 === source.y && target.x - 2 === source.x) {
-      return true
-    }
-  }
-
-  //Left
-
-  if (target.x < source.x) {
-    if (target.y + 1 === source.y && target.x + 2 === source.x) {
-      return true
-    }
-
-    if (target.y - 1 === source.y && target.x + 2 === source.x) {
-      return true
+  for (let i = -2; i < 3; i += 4) {
+    for (let j = -1; j < 2; j += 2) {
+      if (target.y + j === source.y && target.x + i === source.x) {
+        return true
+      }
     }
   }
 

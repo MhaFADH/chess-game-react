@@ -6,10 +6,11 @@
 import React, { useCallback, useContext } from "react"
 import AppContext from "./AppContext"
 import { blackPieces, whitePieces, nextTurn } from "../pieces-related/pieces"
-import king from "../pieces-related/behaviors/king"
+import bishop from "../pieces-related/behaviors/bishop"
 
 const Cell = (props) => {
   const {
+    board,
     stash,
     actions: { setBoard },
     score,
@@ -27,25 +28,27 @@ const Cell = (props) => {
         team: event.target.getAttribute("piece").slice(0, 1)
       }
       const source = {
-        x: parseInt(stash.current.sX, 10),
-        y: parseInt(stash.current.sY, 10),
-        piece: stash.current.sPiece,
-        team: stash.current.team
+        x: parseInt(stash.current.sourceData.sX, 10),
+        y: parseInt(stash.current.sourceData.sY, 10),
+        piece: stash.current.sourceData.sPiece,
+        team: stash.current.sourceData.team
       }
-
+      const { special } = stash.current
       //console.log(target, source)
 
-      if (JSON.stringify(target) !== JSON.stringify(source)) {
+      if (
+        JSON.stringify(target) !== JSON.stringify(source) &&
+        source.team !== target.team
+      ) {
         if (
-          whitePieces[source.piece]?.fn(source, target) ||
-          blackPieces[source.piece]?.fn(source, target)
+          whitePieces[source.piece]?.fn(source, target, board) ||
+          blackPieces[source.piece]?.fn(source, target, board)
         ) {
           setBoard((previous) => {
             previous[target.y][target.x] = source.piece
             previous[source.y][source.x] = 0
 
-            console.log(king(source, target))
-            console.log(source, target)
+            console.log(bishop(source, target, board))
 
             return [...previous]
           })
@@ -66,10 +69,13 @@ const Cell = (props) => {
   )
   const handleStart = useCallback((event) => {
     stash.current = {
-      sX: event.target.getAttribute("col"),
-      sY: event.target.getAttribute("row"),
-      sPiece: event.target.getAttribute("piece"),
-      team: event.target.getAttribute("piece").slice(0, 1)
+      special: event.target.getAttribute("special"),
+      sourceData: {
+        sX: event.target.getAttribute("col"),
+        sY: event.target.getAttribute("row"),
+        sPiece: event.target.getAttribute("piece"),
+        team: event.target.getAttribute("piece").slice(0, 1)
+      }
     }
     //console.log(stash.current)
   }, [])
@@ -98,6 +104,7 @@ const Cell = (props) => {
           row={row}
           col={col}
           src={content}
+          special={0}
         />
       ) : (
         <></>

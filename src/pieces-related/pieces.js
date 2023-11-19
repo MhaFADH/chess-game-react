@@ -43,48 +43,56 @@ export const initScore = () => ({
 
 export const whitePieces = {
   wpawn: {
-    icon: "./pieces-png/white-pawn.png"
+    icon: "./pieces-png/white-pawn.png",
+    fn: () => true
   },
   wknight: {
     icon: "./pieces-png/white-knight.png",
     fn: knight
   },
   wrook: {
-    icon: "./pieces-png/white-rook.png"
+    icon: "./pieces-png/white-rook.png",
+    fn: () => true
   },
   wqueen: {
-    icon: "./pieces-png/white-queen.png"
+    icon: "./pieces-png/white-queen.png",
+    fn: () => true
   },
   wking: {
     icon: "./pieces-png/white-king.png",
     fn: king
   },
   wbishop: {
-    icon: "./pieces-png/white-bishop.png"
+    icon: "./pieces-png/white-bishop.png",
+    fn: () => true
   },
   state: false
 }
 
 export const blackPieces = {
   bpawn: {
-    icon: "./pieces-png/black-pawn.png"
+    icon: "./pieces-png/black-pawn.png",
+    fn: () => true
   },
   bknight: {
     icon: "./pieces-png/black-knight.png",
     fn: knight
   },
   brook: {
-    icon: "./pieces-png/black-rook.png"
+    icon: "./pieces-png/black-rook.png",
+    fn: () => true
   },
   bqueen: {
-    icon: "./pieces-png/black-queen.png"
+    icon: "./pieces-png/black-queen.png",
+    fn: () => true
   },
   bking: {
     icon: "./pieces-png/black-king.png",
     fn: king
   },
   bbishop: {
-    icon: "./pieces-png/black-bishop.png"
+    icon: "./pieces-png/black-bishop.png",
+    fn: () => true
   },
   state: false
 }
