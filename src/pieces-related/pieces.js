@@ -1,3 +1,4 @@
+import bishop from "./behaviors/bishop"
 import king from "./behaviors/king"
 import knight from "./behaviors/knight"
 
@@ -64,7 +65,7 @@ export const whitePieces = {
   },
   wbishop: {
     icon: "./pieces-png/white-bishop.png",
-    fn: () => true
+    fn: bishop
   },
   state: false
 }
@@ -92,7 +93,7 @@ export const blackPieces = {
   },
   bbishop: {
     icon: "./pieces-png/black-bishop.png",
-    fn: () => true
+    fn: bishop
   },
   state: false
 }

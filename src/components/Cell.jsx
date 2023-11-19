@@ -48,7 +48,7 @@ const Cell = (props) => {
             previous[target.y][target.x] = source.piece
             previous[source.y][source.x] = 0
 
-            console.log(bishop(source, target, board))
+            //console.log(bishop(source, target, board))
 
             return [...previous]
           })

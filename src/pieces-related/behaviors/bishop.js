@@ -1,37 +1,42 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-/* eslint-disable capitalized-comments */
 export default (source, target, board) => {
   if (source.x === target.x || source.y === target.y) {
     return false
   }
 
-  for (let i = 1; source.y + i <= 7 && source.x - i >= 0; i += 1) {
-    console.log("COORD ONE: ", source.y + 1, source.x - i)
+  for (let direction = -1; direction <= 2; direction += 2) {
+    let threshold = 0
+    for (
+      let i = direction;
+      source.y + i !== threshold && source.x - i >= 0;
+      i += direction
+    ) {
+      const concerned = board?.[source.y + i]?.[Math.abs(source.x - i)]
 
-    if (source.y + i === target.y && source.x - i === target.x) {
-      return true
+      if (source.y + i === target.y && Math.abs(source.x - i) === target.x) {
+        return true
+      }
+
+      if (concerned !== 0 || concerned === "undefined") {
+        break
+      }
     }
 
-    if (board[source.y + i][source.x - i] !== 0) {
-      console.log("broke")
+    for (
+      let i = direction;
+      source.y + i !== threshold && source.x + i <= 7;
+      i += direction
+    ) {
+      const concerned = board?.[source.y + i]?.[Math.abs(source.x + i)]
 
-      i = 8
+      if (source.y + i === target.y && Math.abs(source.x + i) === target.x) {
+        return true
+      }
+
+      if (concerned !== 0 || concerned === "undefined") {
+        break
+      }
     }
-  }
-
-  for (let i = 1; source.y + i !== 7 && source.x + i <= 7; i += 1) {
-    console.log("COORD TWO: ", source.y + 1, source.x + i)
-
-    if (source.y + i === target.y && source.x + i === target.x) {
-      return true
-    }
-
-    if (board[source.y + i][source.x - i] !== 0) {
-      console.log("broke")
-
-      i = 8
-    }
+    threshold = 7
   }
 
   return false
