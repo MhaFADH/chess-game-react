@@ -6,7 +6,6 @@
 import React, { useCallback, useContext } from "react"
 import AppContext from "./AppContext"
 import { blackPieces, whitePieces, nextTurn } from "../pieces-related/pieces"
-import bishop from "../pieces-related/behaviors/bishop"
 
 const Cell = (props) => {
   const {
