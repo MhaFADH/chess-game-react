@@ -16,8 +16,8 @@ const App = () => {
   return (
     <>
       <header>
-        <div className="grid grid-cols-2 border-4 border-solid border-slate-500">
-          <div className="flex justify-evenly text-white bg-black">
+        <div className="grid grid-cols-2 border-4 border-solid border-slate-500 bg-slate-500">
+          <div className="flex justify-evenly text-white bg-black rounded-mg">
             <span className="float-right font-bold">BLACK</span>
             <span className="float-right">
               Eaten {score.black.eaten} piece(s)
@@ -26,7 +26,7 @@ const App = () => {
               Played {score.black.count} time(s)
             </span>
           </div>
-          <div className="flex justify-evenly">
+          <div className="flex justify-evenly bg-white ">
             <span className="float-left font-bold">WHITE</span>
             <span className="float-left">
               Eaten {score.white.eaten} piece(s)

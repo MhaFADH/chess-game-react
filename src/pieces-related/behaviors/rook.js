@@ -1,22 +1,21 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 export default (source, target, board) => {
   if (source.x !== target.x && source.y !== target.y) {
-    console.log("false")
-
     return false
   }
 
-  console.log("in")
-
-  const axe = source.x === target.x ? "x" : "y"
-
+  const axe = source.x === target.x ? "y" : "x"
   for (let i = -1; i < 2; i += 2) {
-    console.log(target[axe], "hey")
-
-    for (let j = i; target[axe] + j >= -1 || target[axe] + j <= 8; j += i) {
-      if (target[axe] + j === source.axe) {
+    for (let j = i; target[axe] + j > -1 && target[axe] + j <= 7; j += i) {
+      if (target[axe] + j === source[axe]) {
         return true
+      }
+
+      const axeY = axe === "y" ? target[axe] + j : target.y
+      const axeX = axe === "x" ? target[axe] + j : target.x
+      const cell = board?.[axeY]?.[axeX]
+
+      if (cell !== 0 || cell === "undefined") {
+        break
       }
     }
   }
