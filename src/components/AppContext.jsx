@@ -1,69 +1,47 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react"
-import {
-  initBoard,
-  initScore,
-  blackPieces,
-  whitePieces
-} from "../pieces-related/pieces"
+import React, { createContext, useReducer, useRef } from "react"
+import { changeTurn } from "../pieces-related/pieces/teams"
+import { initScore } from "../pieces-related/pieces/main"
+import initBoard from "../pieces-related/pieces/init-board"
+import reset from "../actions/reset"
+import modify from "../actions/modify"
+import start from "../actions/start"
 
+const reducer = (state, action) => {
+  const { type } = action
+
+  switch (type) {
+    case "modify":
+      changeTurn()
+
+      return modify(state, action)
+
+    case "reset":
+      return reset(state)
+
+    case "start":
+      return start(state)
+
+    default:
+      return { ...state }
+  }
+}
 const AppContext = createContext()
 export const AppContextProvider = (props) => {
-  const [board, setBoard] = useState(initBoard)
-  const [score, setScore] = useState(initScore)
-  const [started, setStarted] = useState(false)
-  const totalCount = useRef(0)
-  const resetBoard = useCallback(() => {
-    console.log("reset")
-    setStarted(false)
-    whitePieces.state = false
-    blackPieces.state = false
-    totalCount.current = 0
-    setBoard(initBoard)
-
-    setScore((s) => {
-      s.white.count = 0
-      s.black.count = 0
-      s.white.eaten = 0
-      s.black.eaten = 0
-
-      return s
-    })
-  }, [])
-  const start = () => {
-    whitePieces.state = true
-    setStarted(true)
+  const initState = {
+    board: initBoard(),
+    score: initScore(),
+    started: false
   }
-  const totalUpdate = (nb) => {
-    totalCount.current += nb
-  }
-  useEffect(() => {
-    totalCount.current = score.black.count + score.white.count
-  }, [score])
+  const [mainState, dispatch] = useReducer(reducer, initState)
 
   return (
     <AppContext.Provider
       {...props}
       value={{
-        board,
         stash: useRef(),
-        started,
-        actions: {
-          start,
-          reset: resetBoard,
-          setBoard
-        },
-        score,
-        setScore,
-        totalUpdate,
-        total: totalCount.current
+        reducer: { mainState, dispatch }
       }}
     />
   )

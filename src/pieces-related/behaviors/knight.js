@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export default (source, target) => {
   for (let i = -2; i < 3; i += 4) {
     for (let j = -1; j < 2; j += 2) {
