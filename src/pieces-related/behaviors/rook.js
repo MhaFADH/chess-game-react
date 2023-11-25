@@ -1,3 +1,11 @@
+const checkAxe = (payload) => {
+  const { target, axe, board, j } = payload
+  const axeY = axe === "y" ? target[axe] + j : target.y
+  const axeX = axe === "x" ? target[axe] + j : target.x
+
+  return board?.[axeY]?.[axeX]
+}
+
 export default (source, target, board) => {
   if (source.x !== target.x && source.y !== target.y) {
     return false
@@ -10,9 +18,8 @@ export default (source, target, board) => {
         return true
       }
 
-      const axeY = axe === "y" ? target[axe] + j : target.y
-      const axeX = axe === "x" ? target[axe] + j : target.x
-      const cell = board?.[axeY]?.[axeX]
+      const payload = { target, axe, board, j }
+      const cell = checkAxe(payload)
 
       if (cell !== 0 || cell === "undefined") {
         break
