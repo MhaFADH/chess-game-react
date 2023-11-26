@@ -21,7 +21,7 @@ export default (source, target, board) => {
       const payload = { target, axe, board, j }
       const cell = checkAxe(payload)
 
-      if (cell !== 0 || cell === "undefined") {
+      if (cell !== "empty" || cell === "undefined") {
         break
       }
     }

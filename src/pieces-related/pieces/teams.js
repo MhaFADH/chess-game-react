@@ -28,8 +28,7 @@ const whitePieces = {
   wbishop: {
     icon: "./pieces-png/white-bishop.png",
     fn: bishop
-  },
-  state: false
+  }
 }
 const blackPieces = {
   bpawn: {
@@ -55,15 +54,6 @@ const blackPieces = {
   bbishop: {
     icon: "./pieces-png/black-bishop.png",
     fn: bishop
-  },
-  state: false
+  }
 }
-const getPieces = () => ({ blackPieces, whitePieces })
-const changeTurn = () => {
-  blackPieces.state = !blackPieces.state
-  whitePieces.state = !whitePieces.state
-  // eslint-disable-next-line no-console
-  console.log(blackPieces.state, whitePieces.state)
-}
-
-export { changeTurn, getPieces }
+export { blackPieces, whitePieces }

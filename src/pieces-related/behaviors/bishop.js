@@ -12,7 +12,7 @@ const checkLeft = (payload) => {
       return true
     }
 
-    if (concerned !== 0 || concerned === "undefined") {
+    if (concerned !== "empty" || concerned === "undefined") {
       break
     }
   }
@@ -33,7 +33,7 @@ const checkRight = (payload) => {
       return true
     }
 
-    if (concerned !== 0 || concerned === "undefined") {
+    if (concerned !== "empty" || concerned === "undefined") {
       break
     }
   }

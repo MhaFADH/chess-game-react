@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 import React, { createContext, useReducer, useRef } from "react"
-import { changeTurn } from "../pieces-related/pieces/teams"
 import { initScore } from "../pieces-related/pieces/main"
 import initBoard from "../pieces-related/pieces/init-board"
 import reset from "../actions/reset"
@@ -13,8 +10,6 @@ const reducer = (state, action) => {
 
   switch (type) {
     case "modify":
-      changeTurn()
-
       return modify(state, action)
 
     case "reset":
@@ -32,7 +27,8 @@ export const AppContextProvider = (props) => {
   const initState = {
     board: initBoard(),
     score: initScore(),
-    started: false
+    started: false,
+    turn: "none"
   }
   const [mainState, dispatch] = useReducer(reducer, initState)
 

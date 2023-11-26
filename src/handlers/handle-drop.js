@@ -1,12 +1,11 @@
-import { getPieces } from "../pieces-related/pieces/teams"
+import { blackPieces, whitePieces } from "../pieces-related/pieces/teams"
 
 export default (event, { stash, reducer: { mainState, dispatch } }) => {
-  const { blackPieces, whitePieces } = getPieces()
   const target = {
-    x: parseInt(event.target.getAttribute("col"), 10),
-    y: parseInt(event.target.getAttribute("row"), 10),
-    piece: event.target.getAttribute("piece"),
-    team: event.target.getAttribute("piece").slice(0, 1)
+    x: parseInt(event.target.getAttribute("data-col"), 10),
+    y: parseInt(event.target.getAttribute("data-row"), 10),
+    piece: event.target.getAttribute("data-piece"),
+    team: event.target.getAttribute("data-piece").slice(0, 1)
   }
   const source = {
     x: parseInt(stash.current.sourceData.sX, 10),

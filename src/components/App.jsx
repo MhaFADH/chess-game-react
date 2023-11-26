@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 import { useContext } from "react"
 import AppContext from "./AppContext"
 import Board from "./Board"

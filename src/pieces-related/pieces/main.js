@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 export const initScore = () => ({
   white: {
     eaten: 0,

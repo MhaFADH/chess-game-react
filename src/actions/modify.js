@@ -4,12 +4,14 @@ export default (state, action) => {
 
   if (source.team === "b") {
     stateCopy.score.black.count = state.score.black.count + 1
+    stateCopy.turn = "w"
   } else {
     stateCopy.score.white.count = state.score.white.count + 1
+    stateCopy.turn = "b"
   }
 
   stateCopy.board[target.y][target.x] = source.piece
-  stateCopy.board[source.y][source.x] = 0
+  stateCopy.board[source.y][source.x] = "empty"
 
   return { ...stateCopy }
 }
