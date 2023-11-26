@@ -4,6 +4,7 @@ import initBoard from "../pieces-related/pieces/init-board"
 import reset from "../actions/reset"
 import modify from "../actions/modify"
 import start from "../actions/start"
+import undo from "../actions/undo"
 
 const reducer = (state, action) => {
   const { type } = action
@@ -18,6 +19,9 @@ const reducer = (state, action) => {
     case "start":
       return start(state)
 
+    case "undo":
+      return undo(state)
+
     default:
       return { ...state }
   }
@@ -28,7 +32,8 @@ export const AppContextProvider = (props) => {
     board: initBoard(),
     score: initScore(),
     started: false,
-    turn: "none"
+    turn: "none",
+    previousState: null
   }
   const [mainState, dispatch] = useReducer(reducer, initState)
 

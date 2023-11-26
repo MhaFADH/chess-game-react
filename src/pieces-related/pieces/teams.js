@@ -3,11 +3,12 @@ import king from "../behaviors/king"
 import knight from "../behaviors/knight"
 import rook from "../behaviors/rook"
 import queen from "../behaviors/queen"
+import pawn from "../behaviors/pawn"
 
 const whitePieces = {
   wpawn: {
     icon: "./pieces-png/white-pawn.png",
-    fn: () => true
+    fn: pawn
   },
   wknight: {
     icon: "./pieces-png/white-knight.png",
@@ -33,7 +34,7 @@ const whitePieces = {
 const blackPieces = {
   bpawn: {
     icon: "./pieces-png/black-pawn.png",
-    fn: () => true
+    fn: pawn
   },
   bknight: {
     icon: "./pieces-png/black-knight.png",

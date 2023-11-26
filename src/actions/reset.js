@@ -7,6 +7,8 @@ export default (state) => {
   stateCopy.score.black.count = 0
   stateCopy.score.white.eaten = 0
   stateCopy.score.black.eaten = 0
+  stateCopy.turn = "none"
+  stateCopy.previousState = null
 
   return { ...stateCopy }
 }

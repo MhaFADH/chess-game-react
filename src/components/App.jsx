@@ -30,7 +30,17 @@ const App = () => {
               START
             </button>
           ) : null}
-          <button className="bg-orange-500 font-bold px-10">UNDO</button>
+          {mainState.previousState !== null ? (
+            <button
+              className="bg-orange-500 font-bold px-10"
+              onClick={() => {
+                dispatch({ type: "undo" })
+              }}>
+              UNDO
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       </header>
       <div className="bg-slate-500 h-screen flex text-center align-center justify-center">

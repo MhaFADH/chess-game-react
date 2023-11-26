@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useContext } from "react"
 import AppContext from "./AppContext"
 import handleDrop from "../handlers/handle-drop"
