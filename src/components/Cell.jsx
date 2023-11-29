@@ -3,6 +3,8 @@ import React, { useContext } from "react"
 import AppContext from "./AppContext"
 import handleDrop from "../handlers/handle-drop"
 import handleStart from "../handlers/handle-start"
+import kingsPosition from "../pieces-related/behaviors/checkmate/kings-position"
+import { kings } from "../pieces-related/pieces/teams"
 
 const Cell = (props) => {
   const provided = useContext(AppContext)
@@ -11,6 +13,9 @@ const Cell = (props) => {
   const style = (row + col) % 2 === 0 ? "bg-slate-400" : "bg-slate-200"
   let pieceState = false
   const pieceTeam = piece.slice(0, 1)
+  kingsPosition(props, pieceTeam, kings)
+
+  console.log(kings)
 
   if (pieceTeam === turn) {
     pieceState = true

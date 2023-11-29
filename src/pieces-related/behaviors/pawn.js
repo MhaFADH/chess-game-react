@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const checkCell = (cell, index) => {
   if (index === -1 || index === 1) {
     if (cell !== "undefined" && cell !== "empty") {

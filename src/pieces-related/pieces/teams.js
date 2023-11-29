@@ -57,4 +57,18 @@ const blackPieces = {
     fn: bishop
   }
 }
-export { blackPieces, whitePieces }
+const kings = {
+  whiteKing: {
+    pieces: "wking",
+    x: 4,
+    y: 7,
+    team: "w"
+  },
+  blackKing: {
+    pieces: "bking",
+    x: 4,
+    y: 0,
+    team: "b"
+  }
+}
+export { blackPieces, whitePieces, kings }

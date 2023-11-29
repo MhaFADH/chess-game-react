@@ -1,13 +1,18 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import AppContext from "./AppContext"
 import Board from "./Board"
 import WhitePanel from "./WhitePanel"
 import BlackPanel from "./BlackPanel"
+import noSelect from "../no-select"
 
 const App = () => {
   const {
     reducer: { mainState, dispatch }
   } = useContext(AppContext)
+
+  useEffect(() => {
+    noSelect()
+  }, [])
 
   return (
     <>
@@ -43,7 +48,7 @@ const App = () => {
           )}
         </div>
       </header>
-      <div className="bg-slate-500 h-screen flex text-center align-center justify-center">
+      <div className="bg-slate-500 h-screen flex text-center align-center justify-center no-select">
         <Board board={mainState.board}></Board>
       </div>
     </>
