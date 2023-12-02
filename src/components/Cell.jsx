@@ -15,8 +15,6 @@ const Cell = (props) => {
   const pieceTeam = piece.slice(0, 1)
   kingsPosition(props, pieceTeam, kings)
 
-  console.log(kings)
-
   if (pieceTeam === turn) {
     pieceState = true
   }

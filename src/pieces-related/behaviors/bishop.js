@@ -1,62 +1,30 @@
-const checkLeft = (payload) => {
-  const { source, target, board, direction, threshold } = payload
-
-  for (
-    let i = direction;
-    source.y + i !== threshold && source.x - i >= 0;
-    i += direction
-  ) {
-    const concerned = board?.[source.y + i]?.[Math.abs(source.x - i)]
-
-    if (source.y + i === target.y && Math.abs(source.x - i) === target.x) {
-      return true
-    }
-
-    if (concerned !== "empty" || concerned === "undefined") {
-      break
-    }
-  }
-
-  return false
-}
-const checkRight = (payload) => {
-  const { source, target, board, direction, threshold } = payload
-
-  for (
-    let i = direction;
-    source.y + i !== threshold && source.x + i <= 7;
-    i += direction
-  ) {
-    const concerned = board?.[source.y + i]?.[Math.abs(source.x + i)]
-
-    if (source.y + i === target.y && Math.abs(source.x + i) === target.x) {
-      return true
-    }
-
-    if (concerned !== "empty" || concerned === "undefined") {
-      break
-    }
-  }
-
-  return false
-}
+import checkLimit from "./moves/check-limit"
+import getParams from "./moves/get-params"
 
 export default (source, target, board) => {
   if (source.x === target.x || source.y === target.y) {
     return false
   }
 
-  //Check upwards and downwards
+  const params = getParams(source, target)
 
-  for (let direction = -1; direction <= 2; direction += 2) {
-    let threshold = -1
-    const payload = { source, target, direction, board, threshold }
+  for (
+    let i = 1;
+    checkLimit(target.y + i * params.dirY) &&
+    checkLimit(target.x + i * params.dirX);
+    i += 1
+  ) {
+    const dirY = target.y + i * params.dirY
+    const dirX = target.x + i * params.dirX
+    const cell = board[dirY][dirX]
 
-    if (checkLeft(payload) || checkRight(payload)) {
+    if (dirY === source.y && dirX === source.x) {
       return true
     }
 
-    threshold = 8
+    if (cell !== "empty") {
+      return false
+    }
   }
 
   return false

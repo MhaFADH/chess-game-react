@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import checkmate from "../pieces-related/behaviors/checkmate/checkmate"
+import check from "../pieces-related/behaviors/checkmate/check"
 import { blackPieces, whitePieces } from "../pieces-related/pieces/teams"
 
 export default (event, { stash, reducer: { mainState, dispatch } }) => {
@@ -9,7 +8,6 @@ export default (event, { stash, reducer: { mainState, dispatch } }) => {
     piece: event.target.getAttribute("data-piece"),
     team: event.target.getAttribute("data-piece").slice(0, 1)
   }
-  console.log(stash)
   const source = {
     x: parseInt(stash.current.sourceData.sX, 10),
 
@@ -17,9 +15,8 @@ export default (event, { stash, reducer: { mainState, dispatch } }) => {
     piece: stash.current.sourceData.sPiece,
     team: stash.current.sourceData.team
   }
-  console.log(source.piece.slice(1))
 
-  if (!checkmate(mainState) || source.piece.slice(1) === "king") {
+  if (!check(mainState) || source.piece.slice(1) === "king") {
     if (
       JSON.stringify(target) !== JSON.stringify(source) &&
       source.team !== target.team

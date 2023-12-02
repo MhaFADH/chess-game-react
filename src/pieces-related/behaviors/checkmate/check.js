@@ -1,45 +1,49 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable capitalized-comments */
 /* eslint-disable no-console */
-import pawn from "../pawn"
 import { kings, blackPieces, whitePieces } from "../../pieces/teams"
+import possibleMoves from "./possible-moves"
 
 export default ({ board, turn }) => {
   const concerned = turn === "b" ? whitePieces : blackPieces
   const kingTarget = turn === "b" ? kings.blackKing : kings.whiteKing
   let result = false
 
-  console.log({ concerned })
-  //console.log({ kingTarget })
-  console.log(
-    pawn(
-      { x: 5, y: 1, piece: "wpawn", team: "w" },
-      { x: 4, y: 0, piece: "bking", team: "b" },
-      board
-    )
-  )
-
   board.forEach((row, rowIndex) => {
     row.forEach((col, colIndex) => {
-      const preResult = concerned[col]?.fn(
-        { piece: col, x: colIndex, y: rowIndex, team: col.slice(0, 1) },
-        kingTarget,
-        board
-      )
-      console.log({
+      //console.log("exist ?: ", Boolean(concerned[col]))
+      const source = {
         piece: col,
         x: colIndex,
         y: rowIndex,
         team: col.slice(0, 1)
-      })
-      console.log({ preResult })
+      }
+      const preResult = concerned[col]?.fn(source, kingTarget, board)
+
+      if (concerned[col]) {
+        console.log(possibleMoves(board, source, concerned[col].fn))
+      }
+
+      console.log(
+        "queen",
+        whitePieces.wqueen.fn(
+          {
+            piece: "wqueen",
+            x: 1,
+            y: 5,
+            team: "w"
+          },
+          kings.blackKing,
+          board
+        )
+      )
 
       if (preResult === true) {
+        console.log(preResult, source)
         result = preResult
       }
     })
   })
-  console.log({ result })
 
   return result
 }
