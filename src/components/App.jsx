@@ -10,7 +10,7 @@ const App = () => {
   } = useContext(AppContext)
 
   return (
-    <>
+    <div className="select-none">
       <header>
         <div className="grid grid-cols-2 border-4 border-solid border-slate-500 bg-slate-500">
           <BlackPanel score={mainState.score}></BlackPanel>
@@ -46,7 +46,7 @@ const App = () => {
       <div className="bg-slate-500 h-screen flex text-center align-center justify-center">
         <Board board={mainState.board}></Board>
       </div>
-    </>
+    </div>
   )
 }
 
