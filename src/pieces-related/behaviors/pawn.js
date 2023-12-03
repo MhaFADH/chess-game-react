@@ -8,7 +8,7 @@ const checkCell = (cell, index) => {
 
   return false
 }
-const checkDoubleJump = (cellOne, cellTwo, index, multiplier) => {
+const checkDoubleJump = ({ cellOne, cellTwo, index, multiplier }) => {
   const isPreCellEmpty = cellOne === "empty"
   const isCellEmpty = cellTwo === "empty"
 
@@ -25,10 +25,16 @@ const normalMove = ({ source, target, board, direction }, multiplier) => {
     const isGoodSpot =
       target.x === source.x + i &&
       target.y === source.y + direction * multiplier
+    const payload = {
+      cellOne: firstCell,
+      cellTwo: cell,
+      index: i,
+      multiplier
+    }
 
     if (isGoodSpot) {
       if (multiplier === 2) {
-        return checkDoubleJump(firstCell, cell, i, multiplier)
+        return checkDoubleJump(payload)
       }
 
       if (checkCell(cell, i)) {
