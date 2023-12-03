@@ -1,9 +1,5 @@
-//Get board, make a copy, apply the next move to it, and then test if there is still a checkmate situation.
-/* eslint-disable no-unused-vars */
-/* eslint-disable capitalized-comments */
-/* eslint-disable no-console */
 import { blackPieces, whitePieces } from "../../pieces/teams"
-const getKings = (board) => {
+export const getKings = (board) => {
   const kings = {
     whiteKing: null,
     blackKing: null
@@ -42,7 +38,6 @@ export default (coordinates, source, board) => {
   boardCopy[source.y][source.x] = "empty"
   const kings = getKings(boardCopy)
   const kingTarget = source.team === "b" ? kings.blackKing : kings.whiteKing
-  //console.log({ kingTarget }, { concerned })
   boardCopy.forEach((row, rowIndex) => {
     row.forEach((col, colIndex) => {
       const opSource = {
@@ -54,7 +49,6 @@ export default (coordinates, source, board) => {
       const preResult = concerned[col]?.fn(opSource, kingTarget, boardCopy)
 
       if (preResult === true) {
-        console.log(preResult, opSource)
         result = preResult
       }
     })

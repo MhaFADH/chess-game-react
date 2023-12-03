@@ -5,6 +5,7 @@ import reset from "../actions/reset"
 import modify from "../actions/modify"
 import start from "../actions/start"
 import undo from "../actions/undo"
+import winner from "../actions/winner"
 
 const reducer = (state, action) => {
   const { type } = action
@@ -22,6 +23,9 @@ const reducer = (state, action) => {
     case "undo":
       return undo(state)
 
+    case "winner":
+      return winner(state, action)
+
     default:
       return { ...state }
   }
@@ -33,7 +37,8 @@ export const AppContextProvider = (props) => {
     score: initScore(),
     started: false,
     turn: "none",
-    previousState: null
+    previousState: null,
+    winner: null
   }
   const [mainState, dispatch] = useReducer(reducer, initState)
 

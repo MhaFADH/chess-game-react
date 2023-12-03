@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import calculateNextMove from "./calculate-next-move"
 
 export default (mainState, allPossibleMoves) => {
@@ -11,7 +10,6 @@ export default (mainState, allPossibleMoves) => {
     if (movesArr.length !== 0) {
       movesArr.forEach((coordinates) => {
         if (!calculateNextMove(coordinates, possibleMoves.source, board)) {
-          console.log({ coordinates }, possibleMoves.source)
           possible += 1
         }
       })

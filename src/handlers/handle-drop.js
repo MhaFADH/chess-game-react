@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
 import check from "../pieces-related/behaviors/checkmate/check"
 import { blackPieces, whitePieces } from "../pieces-related/pieces/teams"
+import handlerNextMove from "../pieces-related/behaviors/checkmate/handler-next-move"
 
 export default (event, { stash, reducer: { mainState, dispatch } }) => {
   const target = {
@@ -17,9 +17,19 @@ export default (event, { stash, reducer: { mainState, dispatch } }) => {
     team: stash.current.sourceData.team
   }
   const chk = check(mainState)
-  console.log(chk)
 
-  if (!chk || source.piece.slice(1) === "king") {
+  if (chk === "checkmate") {
+    const team = source.team === "b" ? "WHITE" : "BLACK"
+    dispatch({ type: "winner", payload: { team } })
+
+    return null
+  }
+
+  if (chk && handlerNextMove(mainState, source, target)) {
+    return null
+  }
+
+  if (!handlerNextMove(mainState, source, target)) {
     if (
       JSON.stringify(target) !== JSON.stringify(source) &&
       source.team !== target.team

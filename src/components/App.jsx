@@ -42,6 +42,13 @@ const App = () => {
             <></>
           )}
         </div>
+        <div className="bg-slate-500 text-center py-5">
+          {mainState.winner !== null ? (
+            <span className="font-black bg-white rounded px-10 border-4 border-solid border-black">{`${mainState.winner} WON THE GAME`}</span>
+          ) : (
+            <></>
+          )}
+        </div>
       </header>
       <div className="bg-slate-500 h-screen flex text-center align-center justify-center no-select">
         <Board board={mainState.board}></Board>

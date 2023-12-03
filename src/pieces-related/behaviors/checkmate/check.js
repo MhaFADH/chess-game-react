@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable capitalized-comments */
-/* eslint-disable no-console */
 import { kings, blackPieces, whitePieces } from "../../pieces/teams"
 import checkmate from "./checkmate"
 import possibleMoves from "./possible-moves"
@@ -31,16 +28,12 @@ export default (mainState) => {
       }
 
       if (preResult === true) {
-        console.log(preResult, source)
         result = preResult
       }
     })
   })
-  console.log(allPossibleMoves)
 
   if (checkmate(mainState, allPossibleMoves) === 0) {
-    console.log("checkmate")
-
     return "checkmate"
   }
 
