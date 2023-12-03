@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import check from "../pieces-related/behaviors/checkmate/check"
 import { blackPieces, whitePieces } from "../pieces-related/pieces/teams"
 
@@ -15,8 +16,10 @@ export default (event, { stash, reducer: { mainState, dispatch } }) => {
     piece: stash.current.sourceData.sPiece,
     team: stash.current.sourceData.team
   }
+  const chk = check(mainState)
+  console.log(chk)
 
-  if (!check(mainState) || source.piece.slice(1) === "king") {
+  if (!chk || source.piece.slice(1) === "king") {
     if (
       JSON.stringify(target) !== JSON.stringify(source) &&
       source.team !== target.team

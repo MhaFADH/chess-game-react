@@ -1,24 +1,22 @@
+/* eslint-disable no-console */
 import calculateNextMove from "./calculate-next-move"
 
 export default (mainState, allPossibleMoves) => {
   const { board } = mainState
-  let isCheckmate = true
+  let possible = 0
 
-  allPossibleMoves.map((possibleMoves) => {
+  allPossibleMoves.forEach((possibleMoves) => {
     const movesArr = possibleMoves.possible
 
-    if (movesArr.length === 0) {
-      return false
+    if (movesArr.length !== 0) {
+      movesArr.forEach((coordinates) => {
+        if (!calculateNextMove(coordinates, possibleMoves.source, board)) {
+          console.log({ coordinates }, possibleMoves.source)
+          possible += 1
+        }
+      })
     }
-
-    movesArr.forEach((coordinates) => {
-      if (calculateNextMove(coordinates, possibleMoves.source, board)) {
-        isCheckmate = false
-      }
-    })
-
-    return false
   })
 
-  return isCheckmate
+  return possible
 }

@@ -36,8 +36,9 @@ export default (mainState) => {
       }
     })
   })
+  console.log(allPossibleMoves)
 
-  if (result && checkmate(mainState, allPossibleMoves)) {
+  if (checkmate(mainState, allPossibleMoves) === 0) {
     console.log("checkmate")
 
     return "checkmate"
