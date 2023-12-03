@@ -1,8 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable capitalized-comments */
-/* eslint-disable no-console */
-import pawn from "../pawn"
-
 const isClear = (source, target) => {
   if (
     JSON.stringify(target) !== JSON.stringify(source) &&
