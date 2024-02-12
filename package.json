@@ -1,4 +1,5 @@
 {
+  "homepage": "http://MhaFADH.github.io/chess-game-react",
   "name": "react-template",
   "version": "1.0.0",
   "description": "",
@@ -22,10 +23,13 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
+    "gh-pages": "^6.1.1",
     "typescript": "4.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
